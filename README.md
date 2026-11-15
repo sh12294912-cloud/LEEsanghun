@@ -22,6 +22,18 @@ npm run build      # dist/ 에 정적 파일 생성
 
 데이터는 브라우저 `localStorage`에 저장되고, 원하면 **GitHub Gist로 기기 간 동기화**할 수 있습니다.
 
+## 📷 사진으로 식단 기록 (Claude)
+
+식단 탭에서 음식 사진을 찍으면 Claude(`claude-opus-5-5`)가 음식별 양·열량·탄단지를 추정하고, 확인·수정 후 한 번에 기록합니다.
+
+1. https://platform.claude.com/settings/keys 에서 API 키 생성 (claude.ai 구독과 별도 결제, 사진 1장 약 3~5센트)
+2. Console에서 월 사용 한도 설정 권장
+3. 앱 **설정 → 📷 사진 분석**에 키 저장 (이 기기 브라우저에만 저장, Gist로 동기화 안 됨)
+
+- 사진은 긴 변 1568px JPEG로 줄여서 전송, 응답은 JSON 스키마로 고정 (structured outputs)
+- "정정 메모"(예: 밥 반 공기만 먹음)를 적고 다시 분석 가능
+- 코드: `src/ai/foodAnalysis.ts`, `src/components/PhotoMealCard.tsx`
+
 ## GitHub Gist 동기화
 
 1. https://github.com/settings/tokens/new?scopes=gist 에서 `gist` 권한만 있는 토큰 생성
@@ -39,6 +51,7 @@ npm run build      # dist/ 에 정적 파일 생성
 src/
   types.ts              데이터 타입 (WorkoutLog, MealEntry, BodyLog, Goals)
   store/AppStore.tsx    전역 상태 + 저장 로직
+  ai/                   Claude 사진 분석
   sync/                 Gist API, 동기화 판단(SyncProvider), 병합 로직
   lib/                  날짜, ID, useLocalStorage 유틸
   components/           NavBar, ProgressBar

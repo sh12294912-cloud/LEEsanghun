@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../store/AppStore';
 import type { Goals } from '../types';
 import SyncSettings from '../components/SyncSettings';
+import ApiKeySettings from '../components/ApiKeySettings';
 import { useSync } from '../sync/SyncProvider';
 
 export default function Settings() {
@@ -73,6 +74,8 @@ export default function Settings() {
       </form>
 
       <SyncSettings />
+
+      <ApiKeySettings />
 
       <section className="card form">
         <h2>데이터</h2>

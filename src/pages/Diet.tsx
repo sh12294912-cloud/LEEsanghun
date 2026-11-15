@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../store/AppStore';
 import { formatKoreanDate, today } from '../lib/date';
 import type { MealEntry, MealType } from '../types';
+import PhotoMealCard from '../components/PhotoMealCard';
 
 const MEAL_TYPES: MealType[] = ['아침', '점심', '저녁', '간식'];
 const empty = { name: '', kcal: '', protein: '', carbs: '', fat: '' };
@@ -66,6 +67,8 @@ export default function Diet() {
           </button>
         ))}
       </div>
+
+      <PhotoMealCard date={date} mealType={mealType} />
 
       <section className="card">
         <div className="card-head">
